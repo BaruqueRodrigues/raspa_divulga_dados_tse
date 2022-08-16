@@ -7,6 +7,14 @@ Pacote criado para facilitar o acesso a analistas aos dados
 disponibilizados pelo portal
 <https://divulgacandcontas.tse.jus.br/divulga/#/>.
 
+# Download
+
+Por enquanto o pacote está disponível apenas para download via github.
+
+``` r
+devtools::install_git("raspa_divulga_dados_tse")
+```
+
 # Usagem
 
 Atualmente o pacote retorna 2 funções, a primeira que baixa as

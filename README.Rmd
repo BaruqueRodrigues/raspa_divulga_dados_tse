@@ -19,9 +19,18 @@ library(tidyverse)
 options(scipen = 999)
 ```
 
+
 # raspa.divulga.dados.tse
 
 Pacote criado para facilitar o acesso a analistas aos dados disponibilizados pelo portal https://divulgacandcontas.tse.jus.br/divulga/#/.
+
+# Download
+
+Por enquanto o pacote está disponível apenas para download via github.
+
+```{r, eval=FALSE}
+devtools::install_git("raspa_divulga_dados_tse")
+```
 
 # Usagem
 
