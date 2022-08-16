@@ -68,18 +68,28 @@ dados_bens <- raspa.divulga.dados.tse::captura_bens(id_candidato = 170001722253,
 ```
 
 
-Se seu interesse é baixar os dados de multiplos candidatos recomendamos usar a chunk abaixo, em breve adicionaremos uma função que baixa os bens de todos os candidatos por cargo e uf.
+Se seu interesse é baixar os dados de multiplos candidatos use a função baixar_bens_cargo
 
 ```{r, eval=FALSE}
-dados_bens_dep_est_pe <- purrr::map_dfr(dados_dep_est_PE$id,
-                                 purrr::possibly(
-                                   raspa.divulga.dados.tse::captura_bens,
-                                   otherwise = NULL)
-                                 )
+dados_bens_dep_est_pe <- raspa.divulga.dados.tse::baixar_bens_cargo(ano = 2022,
+                                           uf = "PE",
+                                           cod_cargo =  7)
 ```
 
 
 ```{r}
 dplyr::glimpse(dados_bens_dep_est_pe)
 ```
+
+Se você quer baixar os dados de um cargo para todo o brasil use a função baixar_bens_cargo_BR. No caso abaixo pegamos as informações dos bens para todos os candidatos ao senado brasileiro
+
+```{rm eval = FALSE}
+df_senado_all <- raspa.divulga.dados.tse::baixar_bens_cargo_BR(ano = 2022,
+                                              cod_cargo = 5)
+```
+
+```{r}
+dplyr::glimpse(df_senado_all)
+```
+
 
