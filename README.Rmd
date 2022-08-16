@@ -1,0 +1,76 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+options(scipen = 999)
+```
+
+# raspa.divulga.dados.tse
+
+Pacote criado para facilitar o acesso a analistas aos dados disponibilizados pelo portal https://divulgacandcontas.tse.jus.br/divulga/#/.
+
+# Usagem
+
+Atualmente o pacote retorna 2 funções, a primeira que baixa as informações da api do portal. Primeiro carregamos o pacote
+```{r}
+library(raspa.divulga.dados.tse)
+```
+
+A primeira baixa as informações dos candidatos, via api do site.
+
+```{r, eval= FALSE}
+dados_dep_est_PE <- raspa.divulga.dados.tse::pega_info_cand(ano = 2022,
+                                        sigla_estado = "PE",
+                                        cod_cargo = 7)
+```
+
+
+```{r}
+dplyr::glimpse(dados_dep_est_PE)
+```
+
+O pacote contém o dataset que contém o código dos cargos dos candidatos usados pelo portal.
+
+```{r}
+raspa.divulga.dados.tse::df_cod_cargo
+```
+
+Para baixar os dados com os bens de um candidato use a função captura bens. A função recebe como argumeneto o id do candidato no TSE, que é encontrado no dataset gerado pela função pega_info_cand. No exemplo abaixo usaremos o id do 1° candidato gerado no dataset acima.
+
+```{r,eval= FALSE}
+dados_bens <- raspa.divulga.dados.tse::captura_bens(id_candidato = 170001722253,
+                                      uf = "PE",
+                                      ano = 2022
+                                      )
+```
+
+
+Se seu interesse é baixar os dados de multiplos candidatos recomendamos usar a chunk abaixo, em breve adicionaremos uma função que baixa os bens de todos os candidatos por cargo e uf.
+
+```{r, eval=FALSE}
+dados_bens_dep_est_pe <- purrr::map_dfr(dados_dep_est_PE$id,
+                                 purrr::possibly(
+                                   raspa.divulga.dados.tse::captura_bens,
+                                   otherwise = NULL)
+                                 )
+```
+
+
+```{r}
+dplyr::glimpse(dados_bens_dep_est_pe)
+```
+
