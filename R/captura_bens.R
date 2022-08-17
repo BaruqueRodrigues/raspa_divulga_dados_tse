@@ -28,7 +28,15 @@ captura_bens <- function(id_candidato,
            descricao_estado_civil, descricao_sexo, emails,
            grau_instrucao, numero, nome_coligacao, partido, ocupacao, bens) %>%
     tidyr::unnest_longer(bens) %>%
-    tidyr::unnest_wider(bens)
+    tidyr::unnest_wider(bens) %>%
+    dplyr::mutate(uf_candidato = uf)  %>% #Alteração aqui
+    dplyr::select(-numero) %>%
+    tidyr::unnest_wider(partido) %>%
+    dplyr::mutate(
+      dplyr::across(
+        nome_urna:ocupacao, as.character),
+    )
+
 
   df_final
 
