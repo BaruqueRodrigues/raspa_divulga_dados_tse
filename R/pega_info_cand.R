@@ -28,14 +28,19 @@ pega_info_cand <- function(ano = 2022,
     tidyr::unnest_wider(data) %>%
     janitor::clean_names() %>%
     dplyr::select(id, nome_urna, numero, id_candidato_superior,
-           cpf, descricao_cor_raca,descricao_situacao, grau_instrucao,
+           cpf, descricao_cor_raca, descricao_situacao, grau_instrucao,
            ocupacao, nome_coligacao, cargo, partido, eleicoes_anteriores, bens, total_de_bens) %>%
     tidyr::unnest_wider(cargo) %>%
-    tidyr::unnest_wider(partido, names_repair = "universal") %>%
+    dplyr::rename(numero_urna = numero, desc_cargo = nome, sigla_a = sigla) %>%
+    tidyr::unnest_wider(partido) %>%
+    dplyr::rename(numero_partido = numero, sigla_partido = sigla, nome_partido = nome) %>%
     janitor::clean_names() %>%
-    dplyr::select(-numero_17, -nome_19) %>%
     dplyr::mutate(ano_eleicao = ano,
            estado = sigla_estado)
 
+  message("dados da UF: ", sigla_estado, " baixados")
+
   dados
+
+
 }
