@@ -1,11 +1,10 @@
 Package: raspa.divulga.dados.tse
 Type: Package
-Title: What the Package Does (Title Case)
+Title: baixa os dados da api do site https://divulgacandcontas.tse.jus.br/divulga/#/
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Baruque Rodrigues
+Maintainer: Baruque Rodrigues <quemuel.baruque@ufpe.br>
+Description: baixa todos os dados da api do site https://divulgacandcontas.tse.jus.br/divulga/#/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -17,5 +16,6 @@ Imports:
     janitor,
     jsonlite,
     magrittr,
+    purrr,
     tibble,
     tidyr
