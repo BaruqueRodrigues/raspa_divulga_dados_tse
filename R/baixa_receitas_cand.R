@@ -20,12 +20,12 @@ baixa_receitas_cand <- function(ano_eleicao,
 
 
   url <- paste("https://divulgacandcontas.tse.jus.br/divulga/rest/v1/prestador/consulta/2040602022",
-               ano_eleicao_a,
-               uf_a,
-               cod_cargo_a,
-               n_partido_a,
-               n_cand_a,
-               cod_cand_a,
+               ano_eleicao,
+               uf,
+               cod_cargo,
+               n_partido,
+               n_cand,
+               cod_cand,
                sep = "/")
 
   dados_brutos <- jsonlite::read_json(url)
