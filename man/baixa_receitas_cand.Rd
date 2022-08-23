@@ -4,7 +4,7 @@
 \alias{baixa_receitas_cand}
 \title{baixa_receitas_candidatos}
 \usage{
-baixa_receitas_cand(ano_eleicao, uf, cod_cargo, n_partido, n_cand, cod_cand)
+baixa_receitas_cand(ano_eleicao, uf, cod_cargo)
 }
 \arguments{
 \item{ano_eleicao}{ano da eleicao}
@@ -12,12 +12,6 @@ baixa_receitas_cand(ano_eleicao, uf, cod_cargo, n_partido, n_cand, cod_cand)
 \item{uf}{uf desejada}
 
 \item{cod_cargo}{codigo cargo desejado}
-
-\item{n_partido}{n partido}
-
-\item{n_cand}{n_cand}
-
-\item{cod_cand}{cod_cand}
 }
 \value{
 
