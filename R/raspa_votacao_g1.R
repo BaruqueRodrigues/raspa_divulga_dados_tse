@@ -28,7 +28,7 @@ dataset <- jsonlite::read_json(url) %>%
   dplyr::select(-c(1:6)) %>%
   tidyr::unnest_longer(municipios) %>%
   tidyr::unnest_wider(municipios, names_sep = "_") %>%
-  select(-c(municipios_brancos:municipios_total_percentual)) %>%
+  dplyr::select(-c(municipios_brancos:municipios_total_percentual)) %>%
   tidyr::unnest_longer(municipios_candidatos) %>%
   tidyr::unnest_wider(municipios_candidatos) %>%
   dplyr::select(-c(candidatos, total)) %>%
