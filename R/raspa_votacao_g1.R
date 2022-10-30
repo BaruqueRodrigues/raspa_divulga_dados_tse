@@ -27,11 +27,13 @@ dataset <- jsonlite::read_json(url) %>%
   tidyr::unnest_wider(atualizacao) %>%
   dplyr::select(-c(1:6)) %>%
   tidyr::unnest_longer(municipios) %>%
-  tidyr::unnest_wider(municipios, names_sep = "_") %>%
-  dplyr::select(-c(municipios_brancos:municipios_total_percentual)) %>%
+  tidyr::unnest_wider(municipios, names_sep = "_") %>% #dplyr::glimpse()
+  #dplyr::select(-c(municipios_brancos:municipios_total_percentual)) %>%
   tidyr::unnest_longer(municipios_candidatos) %>%
   tidyr::unnest_wider(municipios_candidatos) %>%
-  dplyr::select(-c(candidatos, total)) #%>%
+  dplyr::select(-c(candidatos, total,
+                   municipios_brancos,municipios_brancos_percentual)) %>%
+  dplyr::relocate(id_candidato, .before = municipios_municipio )#%>%
   #dplyr::mutate(total_votos_validos = as.numeric(total_votos_validos))
 
 dataset

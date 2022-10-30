@@ -19,10 +19,12 @@ raspa_votacao_g1_br <- function(turno = 1,
           "SE", "SP", "TO")
 
   dataset<- uf %>%
-    purrr::map_dfr(~raspa_votacao_g1(turno = turno,
+    purrr::map_dfr(#purrr::possibly(
+      ~raspa_votacao_g1(turno = turno,
                                      cargo = toupper(cargo),
                                      uf = .
 
-    ))
+    )#,     otherwise = NULL)
+    )
   dataset
 }
